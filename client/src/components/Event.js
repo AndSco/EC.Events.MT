@@ -33,7 +33,9 @@ const Event = props => {
             {props.usefulLinks && props.usefulLinks.length > 0 && (
               <LinkSection links={props.usefulLinks} />
             )}
-            {props.programmeImage && <ProgrammeViewer />}
+            {props.programmeImage && props.programmeImage.programmeUrl && (
+              <ProgrammeViewer />
+            )}
             {props.videoUrl && <VideoPlayer videoUrl={props.videoUrl} />}
           </CardContent>
         )}

@@ -3,6 +3,7 @@ import RegistrationContext from "./RegistrationContext";
 import {
   fetchAllEvents,
   fetchEventById,
+  fetchPublicEventById,
   deleteEventFromDB
 } from "../../dbFunctions/handlers/events";
 import { checkIfUserIsSelectedOrNot } from "../../utils/functions";
@@ -105,9 +106,9 @@ const Context = props => {
     setAllEvents(allEventsfromDB)
   }, []);
 
-  React.useEffect(() => {
-    uploadAllEvents();
-  }, [uploadAllEvents])
+  // React.useEffect(() => {
+  //   uploadAllEvents();
+  // }, [uploadAllEvents])
 
   
   // Useful for both sides
@@ -115,10 +116,12 @@ const Context = props => {
   const [isLoading, setIsLoading] = React.useState(false);
 
 
-  const loadEventOnPage = React.useCallback(async (eventId) => {
+  //diversified for both private/admin and public-facing use
+  const loadEventOnPage = React.useCallback(async (eventId, isAdmin = true) => {
     try {
       setIsLoading(true);
-      const eventToUpload = await fetchEventById(eventId);
+      const eventToUpload = isAdmin ? await fetchEventById(eventId) : await fetchPublicEventById(eventId);
+      
       setCurrentEvent(eventToUpload);
       setIsLoading(false);
     } catch (err) {
@@ -126,6 +129,8 @@ const Context = props => {
       throw err;
     }
   }, []);
+
+
 
 
   //MODAL

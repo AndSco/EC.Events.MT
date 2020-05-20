@@ -31,6 +31,17 @@ export const fetchEventById = async eventId => {
 }
 
 
+export const fetchPublicEventById = async eventId => {
+  try {
+    const response = await axios.get(`/api/events/${eventId}/publicDetails`);
+    const data = await response.data;
+    return data;
+  } catch (err) {
+    throw err;
+  }
+};
+
+
 export const deleteEventFromDB = async eventId => {
   try {
     await axios.delete(`/api/events/${eventId}`);

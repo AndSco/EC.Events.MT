@@ -11,8 +11,10 @@ const DashboardPage = () => {
 
 
   React.useEffect(() => {
-    uploadAllEvents();
-  }, [uploadAllEvents, isCreatingEvent, isEditingEvent]);
+    if (isAdminLoggedIn) {
+      uploadAllEvents();
+    }
+  }, [uploadAllEvents, isCreatingEvent, isEditingEvent, isAdminLoggedIn]);
 
 
   if (!isAdminLoggedIn) {

@@ -16,7 +16,7 @@ const EventPage = props => {
   const eventId = props.match.params.eventId;
 
   React.useEffect(() => {
-    loadEventOnPage(eventId);
+    loadEventOnPage(eventId, false);
   }, [loadEventOnPage, eventId])
 
   return isLoading || !currentEvent ? (

@@ -39,6 +39,48 @@ module.exports.getEvent = async (req, res, next) => {
   }
 }
 
+// ISOLATE ABILITY TO GET PARTICIPANTS, SO IT CAN GO BEHIND MIDDLEWARE - this route return only public event details
+module.exports.getEventWithoutParticipants = async (req, res, next) => {
+  try {
+    const { eventId } = req.params;
+    const fullEvent = await Event.findById(eventId);
+    console.log("FULL EVENT", fullEvent);
+    const {
+      title,
+      date,
+      description,
+      startingTime,
+      endingTime,
+      venue,
+      videoUrl,
+      programmeImage,
+      usefulLinks,
+      _id,
+      isOrganisationRequired,
+      isIdRequired
+    } = fullEvent;
+
+    const eventToReturn = {
+      title,
+      date,
+      description,
+      startingTime,
+      endingTime,
+      venue,
+      videoUrl,
+      programmeImage,
+      usefulLinks,
+      _id,
+      isOrganisationRequired,
+      isIdRequired
+    };
+
+    res.status(200).json(eventToReturn);
+  } catch (err) {
+    return next(err);
+  }
+}
+
 
 module.exports.deleteEvent = async (req, res, next) => {
   try {
