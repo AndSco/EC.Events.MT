@@ -21,7 +21,7 @@ const RichTextEditor = ({ onRichTextUpdate, startingValue }) => {
         Description <span style={{ color: "red" }}> *</span>
       </label>
 
-      <div style={{padding: "10px 0"}}>
+      <div style={{padding: "1.6rem 0"}}>
         <JoditEditor
           ref={editor}
           value={content}

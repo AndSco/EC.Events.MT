@@ -1,10 +1,11 @@
 import React from "react";
 import RegistrationContext from "../contexts/eventRegistration/RegistrationContext";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+
 
 const Navbar = props => {
   const context = React.useContext(RegistrationContext);
-  const {isAdminLoggedIn, startCreatingEvent, finishedCreatingEvent, finishedEditingEvent, logoutAdmin} = context;
+  const {isAdminLoggedIn, startCreatingEvent, finishedCreatingEvent, finishedEditingEvent, logoutAdmin, isCreatingEvent} = context;
   return (
     <nav id="navbar">
       <div id="main-titles" style={styles.titleContainer}>
@@ -27,15 +28,25 @@ const Navbar = props => {
         </a>
       ) : (
         <div id="admin-menu-items">
-          <Link to="/">
-            <h5 onClick={() => {
-              finishedCreatingEvent();
-              finishedEditingEvent();
-            }}>OPEN EVENTS</h5>
-          </Link>
-          <Link to="/">
-            <h5 onClick={startCreatingEvent}>CREATE NEW EVENT</h5>
-          </Link>
+          <NavLink to="/">
+            <h5
+              onClick={() => {
+                finishedCreatingEvent();
+                finishedEditingEvent();
+              }}
+              style={{ color: !isCreatingEvent ? "#FF006C" : "" }}
+            >
+              OPEN EVENTS
+            </h5>
+          </NavLink>
+          <NavLink to="/">
+            <h5
+              onClick={startCreatingEvent}
+              style={{ color: isCreatingEvent ? "#FF006C" : "" }}
+            >
+              CREATE NEW EVENT
+            </h5>
+          </NavLink>
           <h5 onClick={logoutAdmin}>LOG OUT</h5>
         </div>
       )}
