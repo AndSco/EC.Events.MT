@@ -4,6 +4,7 @@ import { uploadEventProgramme, deleteEventProgramme } from "../../dbFunctions/ha
 import RegistrationContext from "../../contexts/eventRegistration/RegistrationContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+
 const Input = props => {
   const context = React.useContext(RegistrationContext);
   const { eventCurrentlyEditing } = context;
@@ -155,12 +156,13 @@ const Input = props => {
     );
   }
 
+
   return (
     <div
       style={{ ...styles.inputContainer, width: props.isLong ? 600 : 270 }}
       className="input-container"
     >
-      <label htmlFor={props.inputName} style={styles.label}>
+      <label htmlFor={props.inputName}>
         {props.inputName}
         {props.isCompulsory && <span style={{ color: "red" }}> *</span>}
       </label>
@@ -181,9 +183,6 @@ const styles = {
     justifyContent: "space-between",
     padding: "6px 10px",
     margin: 10
-  },
-  label: {
-    // color: "red"
   }
 };
 

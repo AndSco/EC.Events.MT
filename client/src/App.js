@@ -19,7 +19,6 @@ function App() {
   // check if there is an authorization token! HYDRATION: we check even after refresh if 
   //there is a token in local storage. if yes, we populate the messages
   if (localStorage.jwtToken) {
-    console.log("SET HEADERS!");
     setTokenHeader(localStorage.jwtToken);
   }
 

@@ -3,12 +3,9 @@ const Participant = require("../models/Participant");
 const cloudinary = require("cloudinary");
 
 
-
-
 module.exports.createNewEvent = async (req, res, next) => {
   try {
     const eventConfigs = req.body;
-    // eventConfigs.programmeImages = [{ imageUrl: "testUrl", imagePublicId: "testKey" }];
     const newEvent = await Event.create(eventConfigs);
     res.status(200).json(newEvent);
   } catch(err) {
@@ -44,7 +41,6 @@ module.exports.getEventWithoutParticipants = async (req, res, next) => {
   try {
     const { eventId } = req.params;
     const fullEvent = await Event.findById(eventId);
-    console.log("FULL EVENT", fullEvent);
     const {
       title,
       date,

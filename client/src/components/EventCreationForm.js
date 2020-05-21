@@ -14,6 +14,8 @@ import { createEvent, editEvent } from "../dbFunctions/handlers/events";
 import Card from "./UIcomponents/Card";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import UsefulLink from "./UIcomponents/UsefulLink";
+import RichTextEditor from "./RichTextEditor";
+
 
 const EventCreationForm = props => {
   const context = React.useContext(RegistrationContext);
@@ -28,8 +30,14 @@ const EventCreationForm = props => {
     eventCurrentlyEditing ? eventCurrentlyEditing : adminFormInitialState
   );
 
+  // RICH TEXT EDITOR
+  const [richTextDescription, setRichTextDescription] = React.useState("");
+  const updateRichText = input => setRichTextDescription(input);
+
+  // PROGRAMME
   const isThereAProgrammeImage = formState.programmeImage !== undefined;
 
+  // ID AND ORGANISATION
   const idRequirements = eventCurrentlyEditing && eventCurrentlyEditing.isIdRequired ? "yes" : "no";
   const [isIdRequired, setIsIdRequired] = React.useState(idRequirements);
 
@@ -72,9 +80,10 @@ const EventCreationForm = props => {
 
   const removeProgramme = () => handleInputChange("programmeImage", {}, true);
 
+
   const handleSubmit = async e => {
     e.preventDefault();
-    const configsObject = formState.inputValues || formState; //for id, organisation and links i editing mode, there is no inputValues (they are managed outside the reducer)
+    const configsObject = formState.inputValues || formState; //for id, organisation and links in editing mode, there is no inputValues (they are managed outside the reducer)
     
     //Add the ID and organisationRequired info!
     configsObject.isIdRequired = isIdRequired === "no" ? false : true;
@@ -82,6 +91,9 @@ const EventCreationForm = props => {
 
     //Add the useful links
     configsObject.usefulLinks = usefulLinks;
+
+    //Add rich text description
+    configsObject.description = richTextDescription;
 
     if (!eventCurrentlyEditing) {
       await createEvent(configsObject);
@@ -147,6 +159,11 @@ const EventCreationForm = props => {
                 removeProgramme={removeProgramme}
               />
             ))}
+
+            <RichTextEditor
+              onRichTextUpdate={updateRichText}
+              startingValue={eventCurrentlyEditing ? eventCurrentlyEditing.description : ""}
+            />
 
             <div id="id-card-checkbox" className="radio-box input-container">
               <p>Do participants need an ID card for this event?</p>

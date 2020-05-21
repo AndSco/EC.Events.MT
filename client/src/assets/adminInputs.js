@@ -39,14 +39,14 @@ const adminInputs = [
     isLong: false,
     validationNeeded: "required"
   },
-  {
-    identifier: "description",
-    name: "Event Description",
-    placeholder: "Enter the event description",
-    isCompulsory: true,
-    isLong: true,
-    isTextArea: true
-  },
+  // {
+  //   identifier: "description",
+  //   name: "Event Description",
+  //   placeholder: "Enter the event description",
+  //   isCompulsory: true,
+  //   isLong: true,
+  //   isTextArea: true
+  // },
   {
     identifier: "programmeImage",
     name: "Programme image",

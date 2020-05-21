@@ -5,9 +5,10 @@ const EventDescription = (props) => {
   return (
     <div>
       <EventSectionTitle title="description" />
-      <p style={styles.paragraph} id="event-description">{props.description}</p>
-    </div>  
-  )
+      {/* <p style={styles.paragraph} id="event-description">{props.description}</p> */}
+      <div style={styles.paragraph} id="event-description" dangerouslySetInnerHTML={{__html: props.description}} />
+    </div>
+  );
 }
 
 const styles = {

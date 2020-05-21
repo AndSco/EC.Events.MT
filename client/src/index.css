@@ -257,6 +257,9 @@ textarea {
 
 #event-description {
   white-space: pre-wrap;
+  font-family: "regular";
+  color: var(--semi-dark-grey);
+  padding-top: 1rem;
 }
 
 .icon-line {
