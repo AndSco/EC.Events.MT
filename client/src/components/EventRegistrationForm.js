@@ -43,10 +43,6 @@ const EventRegistrationForm = () => {
     <div>
       <EventMinimalHeader />
       <CardContent>
-        {/* <div style={styles.header}>
-          <SectionTitle title="Register now" />
-        </div> */}
-
         <form
           encType="multipart/form-data"
           style={styles.formContainer}
@@ -73,21 +69,12 @@ const EventRegistrationForm = () => {
 
           <BottomButtons isSingleButton={true}>
             <CustomButton
-              buttonName="SUBMIT"
+              buttonName="REGISTER"
               color="#13E3AB"
               isSubmitButton
               largeButton={true}
             />
           </BottomButtons>
-          {/* <BottomButtons isSingleButton={true}>
-            <div id="disappearing-button">
-              <SecondaryButton
-                buttonName="Cancel and go back"
-                functionToPerform={closeRegistrationForm}
-                isBackButton={true}
-              />
-            </div>
-          </BottomButtons> */}
         </form>
       </CardContent>
     </div>
