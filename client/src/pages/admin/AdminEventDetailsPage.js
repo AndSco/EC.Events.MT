@@ -31,17 +31,17 @@ const AdminEventDetailsPage = props => {
     setVisibleParticipants(copiedArray);
   }
 
+  React.useEffect(() => {
+    loadEventOnPage(eventId);
+  }, [loadEventOnPage, eventId]);
+  
 
   React.useEffect(() => {
-    if (currentEvent) {
+    if (currentEvent && currentEvent.participantsRegistered) {
       setVisibleParticipants(sortParticipantsBySomeValue("registrationStatus", currentEvent.participantsRegistered))
     }
   }, [currentEvent])
 
-
-  React.useEffect(() => {
-    loadEventOnPage(eventId);
-  }, [loadEventOnPage, eventId])
 
   const refreshEvent = () => {
     loadEventOnPage(eventId);
@@ -68,7 +68,11 @@ const AdminEventDetailsPage = props => {
             <div style={{ display: "flex" }}>
               <ParticipantsCount
                 label="total"
-                value={currentEvent.participantsRegistered.length}
+                value={
+                  currentEvent.participantsRegistered
+                    ? currentEvent.participantsRegistered.length
+                    : undefined
+                }
                 functionToPerform={() => {
                   deselectAll();
                   setParticipantCountActive("total");
@@ -83,7 +87,11 @@ const AdminEventDetailsPage = props => {
               />
               <ParticipantsCount
                 label="pending"
-                value={getParticipantsByStatus(currentEvent, "pending").length}
+                value={
+                  currentEvent.participantsRegistered
+                    ? getParticipantsByStatus(currentEvent, "pending").length
+                    : undefined
+                }
                 functionToPerform={() => {
                   deselectAll();
                   setParticipantCountActive("pending");
@@ -96,7 +104,9 @@ const AdminEventDetailsPage = props => {
               <ParticipantsCount
                 label="confirmed"
                 value={
-                  getParticipantsByStatus(currentEvent, "confirmed").length
+                  currentEvent.participantsRegistered
+                    ? getParticipantsByStatus(currentEvent, "confirmed").length
+                    : undefined
                 }
                 functionToPerform={() => {
                   deselectAll();
@@ -109,7 +119,11 @@ const AdminEventDetailsPage = props => {
               />
               <ParticipantsCount
                 label="rejected"
-                value={getParticipantsByStatus(currentEvent, "rejected").length}
+                value={
+                  currentEvent.participantsRegistered
+                    ? getParticipantsByStatus(currentEvent, "rejected").length
+                    : undefined
+                }
                 functionToPerform={() => {
                   deselectAll();
                   setParticipantCountActive("rejected");
@@ -121,7 +135,13 @@ const AdminEventDetailsPage = props => {
               />
               <ParticipantsCount
                 label="spam"
-                value={getParticipantsByStatus(currentEvent, "spam").length}
+                value={
+                  currentEvent.participantsRegistered ? getParticipantsByStatus(
+                    currentEvent,
+                    "spam"
+                  ).length 
+                  : undefined
+                }
                 functionToPerform={() => {
                   deselectAll();
                   setParticipantCountActive("spam");
