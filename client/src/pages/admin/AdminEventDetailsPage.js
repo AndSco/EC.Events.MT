@@ -20,6 +20,7 @@ import DownloadExcel from "../../components/DownloadExcel";
 const AdminEventDetailsPage = props => {
   const context = React.useContext(RegistrationContext);
   const { currentEvent, isLoading, loadEventOnPage, deselectAll } = context;
+  console.log("CURR EVENT", currentEvent);
   const eventId = props.match.params.eventId;
   const [participantCountActive, setParticipantCountActive] = React.useState("total");
   const [visibleParticipants, setVisibleParticipants] = React.useState(undefined);
@@ -67,7 +68,7 @@ const AdminEventDetailsPage = props => {
             <div style={{ display: "flex" }}>
               <ParticipantsCount
                 label="total"
-                value={currentEvent.participantsRegistered.length}
+                value={currentEvent ? currentEvent.participantsRegistered.length : undefined}
                 functionToPerform={() => {
                   deselectAll();
                   setParticipantCountActive("total");

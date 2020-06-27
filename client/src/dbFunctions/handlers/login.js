@@ -6,7 +6,6 @@ export const authenticate = async (username, password) => {
     const response = await axios.post("./api/admin/login", {username, password});
     const isAuthenticated = response.data.managedToLogin;
     const {token} = response.data;
-    console.log("TOKEN IS", token);
     return {isAuthenticated, token};
   } catch(err) {
     throw err;
