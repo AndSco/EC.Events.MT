@@ -9,7 +9,8 @@ const RichTextEditor = ({ onRichTextUpdate, startingValue }) => {
   React.useEffect(() => onRichTextUpdate(content), [content, onRichTextUpdate]);
 
   const config = {
-    readonly: false // all options from https://xdsoft.net/jodit/doc/
+    readonly: false, // all options from https://xdsoft.net/jodit/doc/
+    height: 300
   };
 
   return (
@@ -37,7 +38,6 @@ const RichTextEditor = ({ onRichTextUpdate, startingValue }) => {
 
 const styles = {
   inputContainer: {
-    // height: 40,
     display: "flex",
     flexDirection: "column",
     flexGrow: 1,
