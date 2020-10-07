@@ -9,7 +9,6 @@ const ConfirmationMessage = () => {
   return (
     <div className="confirmation-box-container">
       <div id="confirmation-box">
-        {/* <FontAwesomeIcon icon="check-circle" color="#13E3AB" size="4x" /> */}
         <div
           id="confirmation-box-content"
           style={{
@@ -23,7 +22,6 @@ const ConfirmationMessage = () => {
           <h4 style={{ textAlign: "center" }}>
             We will confirm your attendance, or otherwise, as soon as possible.
           </h4>
-          {/* <AddToCalendarButton /> */}
         </div>
         <SecondaryButton
           isBackButton={true}
@@ -33,6 +31,6 @@ const ConfirmationMessage = () => {
       </div>
     </div>
   );
-}
+};
 
 export default ConfirmationMessage;

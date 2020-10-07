@@ -5,7 +5,7 @@ import Loader from "../../components/UIcomponents/Loader";
 import SectionTitle from "../../components/UIcomponents/SectionTitle";
 import SecondaryButton from "../../components/UIcomponents/SecondaryButton";
 import ParticipantsTable from "../../components/ParticipantsTable";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import {
   getParticipantsByStatus,
   sortParticipantsBySomeValue
@@ -16,38 +16,45 @@ import CardContent from "../../components/UIcomponents/CardContent";
 import { generateTableHeaders } from "../../assets/adminInputs";
 import DownloadExcel from "../../components/DownloadExcel";
 
-
 const AdminEventDetailsPage = props => {
   const context = React.useContext(RegistrationContext);
   const { currentEvent, isLoading, loadEventOnPage, deselectAll } = context;
   const eventId = props.match.params.eventId;
-  const [participantCountActive, setParticipantCountActive] = React.useState("total");
-  const [visibleParticipants, setVisibleParticipants] = React.useState(undefined);
+  const [participantCountActive, setParticipantCountActive] = React.useState(
+    "total"
+  );
+  const [visibleParticipants, setVisibleParticipants] = React.useState(
+    undefined
+  );
 
-  const responsiveTableHeaders = currentEvent ? generateTableHeaders(currentEvent) : undefined;
+  const responsiveTableHeaders = currentEvent
+    ? generateTableHeaders(currentEvent)
+    : undefined;
 
   const resortParticipants = receivedArray => {
     const copiedArray = [...receivedArray];
     setVisibleParticipants(copiedArray);
-  }
+  };
 
   React.useEffect(() => {
     loadEventOnPage(eventId);
   }, [loadEventOnPage, eventId]);
-  
 
   React.useEffect(() => {
     if (currentEvent && currentEvent.participantsRegistered) {
-      setVisibleParticipants(sortParticipantsBySomeValue("registrationStatus", currentEvent.participantsRegistered))
+      setVisibleParticipants(
+        sortParticipantsBySomeValue(
+          "registrationStatus",
+          currentEvent.participantsRegistered
+        )
+      );
     }
-  }, [currentEvent])
-
+  }, [currentEvent]);
 
   const refreshEvent = () => {
     loadEventOnPage(eventId);
-  }
+  };
 
-  
   return isLoading || !currentEvent ? (
     <Loader />
   ) : (
@@ -136,11 +143,9 @@ const AdminEventDetailsPage = props => {
               <ParticipantsCount
                 label="spam"
                 value={
-                  currentEvent.participantsRegistered ? getParticipantsByStatus(
-                    currentEvent,
-                    "spam"
-                  ).length 
-                  : undefined
+                  currentEvent.participantsRegistered
+                    ? getParticipantsByStatus(currentEvent, "spam").length
+                    : undefined
                 }
                 functionToPerform={() => {
                   deselectAll();
@@ -168,7 +173,6 @@ const AdminEventDetailsPage = props => {
             <DownloadExcel dataSet={visibleParticipants} />
           </div>
           <ParticipantsTable
-            // tableHeaders={tableHeaders}
             tableHeaders={responsiveTableHeaders}
             tableEntries={visibleParticipants}
             refreshEvent={refreshEvent}
@@ -186,8 +190,6 @@ const AdminEventDetailsPage = props => {
       </Card>
     </div>
   );
-}
+};
 
 export default AdminEventDetailsPage;
-
-

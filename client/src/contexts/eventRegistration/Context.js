@@ -9,22 +9,24 @@ import {
 import { checkIfUserIsSelectedOrNot } from "../../utils/functions";
 import Modal from "../../components/UIcomponents/Modal";
 import {
-  updateParticipantRegistrationOnDB, 
-  removeParticipantFromDB, 
+  updateParticipantRegistrationOnDB,
+  removeParticipantFromDB,
   updateParticipantsInBulkOnDb
 } from "../../dbFunctions/handlers/participants";
-import {setTokenHeader} from "../../dbFunctions/handlers/login";
-
+import { setTokenHeader } from "../../dbFunctions/handlers/login";
 
 const Context = props => {
   //Participant side
   const [isRegistering, setIsRegistering] = React.useState(false);
   const [isRegistrationOver, setIsRegistrationOver] = React.useState(false);
-  const [isRegistrationButtonHidden, setIsRegistrationButtonHidden] = React.useState(false);
+  const [
+    isRegistrationButtonHidden,
+    setIsRegistrationButtonHidden
+  ] = React.useState(false);
 
   const openRegistrationForm = () => {
     setIsRegistering(true);
-  }
+  };
 
   const closeRegistrationForm = () => {
     setIsRegistering(false);
@@ -32,39 +34,42 @@ const Context = props => {
 
   const finishRegistrationProcess = () => {
     setIsRegistrationOver(true);
-  }
+  };
 
   const backToEventPageAndHideButton = () => {
     setIsRegistrationOver(false);
     setIsRegistering(false);
     setIsRegistrationButtonHidden(true);
-  }
+  };
 
   //Admin side
   const [allEvents, setAllEvents] = React.useState(undefined);
   const [isCreatingEvent, setIsCreatingEvent] = React.useState(false);
   const [isEditingEvent, setIsEditingEvent] = React.useState(false);
-  const [eventCurrentlyEditing, setEventCurrentlyEditing] = React.useState(undefined);
+  const [eventCurrentlyEditing, setEventCurrentlyEditing] = React.useState(
+    undefined
+  );
 
   const isAdminInLocalStorage = localStorage.getItem("isAdminLoggedIn");
-  const [isAdminLoggedIn, setIsAdminLoggedIn] = React.useState(isAdminInLocalStorage);
-  
-  const logInAdmin = (token) => {
+  const [isAdminLoggedIn, setIsAdminLoggedIn] = React.useState(
+    isAdminInLocalStorage
+  );
+
+  const logInAdmin = token => {
     localStorage.setItem("isAdminLoggedIn", "true");
     localStorage.setItem("jwtToken", token);
     setTokenHeader(token);
     setIsAdminLoggedIn(true);
     uploadAllEvents();
-  }; 
-  
+  };
+
   const logoutAdmin = () => {
     setIsAdminLoggedIn(false);
     localStorage.removeItem("isAdminLoggedIn");
     localStorage.removeItem("jwtToken");
     setTokenHeader(false);
     window.location = "/";
-  }
-
+  };
 
   //Event creation
   const startCreatingEvent = () => {
@@ -73,7 +78,7 @@ const Context = props => {
 
   const finishedCreatingEvent = () => {
     setIsCreatingEvent(false);
-  }
+  };
 
   //Event editing
   const startEditingEvent = eventObject => {
@@ -86,42 +91,40 @@ const Context = props => {
     setEventCurrentlyEditing(null);
   };
 
-  // Event deleting 
+  // Event deleting
   const [idOfEventToDelete, setIdOfEventToDelete] = React.useState(null);
-  
+
   const prepareEventToBeDeleted = eventId => {
     setIdOfEventToDelete(eventId);
-  }
+  };
 
   const deleteEventAndReload = async () => {
     await deleteEventFromDB(idOfEventToDelete);
     uploadAllEvents();
   };
 
-
-
   // PREPARE ALL EVENTS FROM DB
   const uploadAllEvents = React.useCallback(async () => {
     const allEventsfromDB = await fetchAllEvents();
-    setAllEvents(allEventsfromDB)
+    setAllEvents(allEventsfromDB);
   }, []);
 
   // React.useEffect(() => {
   //   uploadAllEvents();
   // }, [uploadAllEvents])
 
-  
   // Useful for both sides
   const [currentEvent, setCurrentEvent] = React.useState(undefined);
   const [isLoading, setIsLoading] = React.useState(false);
-
 
   //diversified for both private/admin and public-facing use
   const loadEventOnPage = React.useCallback(async (eventId, isAdmin = true) => {
     try {
       setIsLoading(true);
-      const eventToUpload = isAdmin ? await fetchEventById(eventId) : await fetchPublicEventById(eventId);
-      
+      const eventToUpload = isAdmin
+        ? await fetchEventById(eventId)
+        : await fetchPublicEventById(eventId);
+
       setCurrentEvent(eventToUpload);
       setIsLoading(false);
     } catch (err) {
@@ -130,19 +133,17 @@ const Context = props => {
     }
   }, []);
 
-
-
-
   //MODAL
   const [isModalOpen, setIsModalOpen] = React.useState(false);
   const [modalMessage, setModalMessage] = React.useState("");
   const [actionType, setActionType] = React.useState(null);
-  const [selectedParticipantId, setSelectedParticipantId] = React.useState(null);
+  const [selectedParticipantId, setSelectedParticipantId] = React.useState(
+    null
+  );
 
-  const specifyParticipantId = (id) => {
+  const specifyParticipantId = id => {
     setSelectedParticipantId(id);
-  }
-
+  };
 
   const manageModal = (purpose, participant, isBatchEmail) => {
     if (isBatchEmail) {
@@ -160,7 +161,6 @@ const Context = props => {
         );
         openModal();
       }
-      
     } else {
       if (purpose === "accept") {
         setActionType("accept");
@@ -186,9 +186,7 @@ const Context = props => {
 
       if (purpose === "deleteEvent") {
         setActionType("deleteEvent");
-        setModalMessage(
-          `Sure you want to delete ${participant.title}?`
-        );
+        setModalMessage(`Sure you want to delete ${participant.title}?`);
         openModal();
       }
     }
@@ -196,12 +194,11 @@ const Context = props => {
 
   const openModal = () => {
     setIsModalOpen(true);
-  }
+  };
 
   const closeModal = () => {
     setIsModalOpen(false);
-  }
-
+  };
 
   // Multiple selection
   const [isSelectAllActive, setIsSelectAllActive] = React.useState(false);
@@ -210,15 +207,15 @@ const Context = props => {
 
   const selectAll = () => {
     setIsSelectAllActive(true);
-  }
-  
+  };
+
   const deselectAll = () => {
     setIsSelectAllActive(false);
     setIsDeselectAllActive(true);
     setSelectedParticipants([]);
-  }
+  };
 
-  const resetSwitch = (switchType) => {
+  const resetSwitch = switchType => {
     if (switchType === "selectAll") {
       setIsSelectAllActive(false);
     }
@@ -226,28 +223,27 @@ const Context = props => {
       setIsDeselectAllActive(false);
     }
     return;
-  }
+  };
 
-  const onUserSelectionHandler = (userObj) => {
-    setSelectedParticipants(checkIfUserIsSelectedOrNot(userObj, selectedParticipants));
-  }
+  const onUserSelectionHandler = userObj => {
+    setSelectedParticipants(
+      checkIfUserIsSelectedOrNot(userObj, selectedParticipants)
+    );
+  };
 
-
-  const pushInBlock = (participantsArray) => {
+  const pushInBlock = participantsArray => {
     setSelectedParticipants(participantsArray);
-  }
+  };
 
   //LOADING
   const startLoading = () => {
     setIsLoading(true);
-  }
+  };
 
   const stopLoading = () => {
     setIsLoading(false);
-  }
+  };
 
-  
-  
   return (
     <RegistrationContext.Provider
       value={{
@@ -288,7 +284,7 @@ const Context = props => {
         manageModal,
         modalMessage,
         actionType,
-        specifyParticipantId, 
+        specifyParticipantId,
         //MULTIPLE CHOICE
         selectedParticipants,
         isSelectAllActive,
@@ -311,7 +307,7 @@ const Context = props => {
             <h4
               className="modal-confirmation-button"
               style={{ padding: 15 }}
-              onClick={async () => {         
+              onClick={async () => {
                 if (actionType === "accept" || actionType === "reject") {
                   await updateParticipantRegistrationOnDB(
                     selectedParticipantId,
@@ -322,7 +318,9 @@ const Context = props => {
                   await removeParticipantFromDB(selectedParticipantId);
                 }
                 if (actionType.includes("batch")) {
-                  const participantsIds = selectedParticipants.map(participant => participant._id);
+                  const participantsIds = selectedParticipants.map(
+                    participant => participant._id
+                  );
                   if (actionType === "batchAccept") {
                     await updateParticipantsInBulkOnDb(
                       participantsIds,
@@ -336,10 +334,7 @@ const Context = props => {
                     );
                     deselectAll();
                   } else if (actionType === "batchSpam") {
-                    await updateParticipantsInBulkOnDb(
-                      participantsIds,
-                      "spam"
-                    );
+                    await updateParticipantsInBulkOnDb(participantsIds, "spam");
                   }
                 }
                 if (actionType === "deleteEvent") {
@@ -347,7 +342,7 @@ const Context = props => {
                   closeModal();
                   return;
                 }
-                
+
                 closeModal();
                 loadEventOnPage(currentEvent._id);
               }}
@@ -365,9 +360,7 @@ const Context = props => {
         </Modal>
       )}
     </RegistrationContext.Provider>
-  );  
-}
+  );
+};
 
 export default Context;
-
-

@@ -1,6 +1,5 @@
 import React from "react";
 
-
 const Modal = props => {
   return (
     <div
@@ -21,6 +20,6 @@ const Modal = props => {
       </div>
     </div>
   );
-}
+};
 
 export default Modal;

@@ -6,7 +6,7 @@ const InputLogin = props => {
 
   React.useEffect(() => {
     onInputChange(inputName, inputValue);
-  }, [inputValue, onInputChange, inputName])
+  }, [inputValue, onInputChange, inputName]);
 
   return (
     <div
@@ -29,16 +29,15 @@ const InputLogin = props => {
       />
     </div>
   );
-}
+};
 
 const styles = {
   inputContainer: {
-    // height: 40, 
     display: "flex",
     flexDirection: "column",
     flexGrow: 1,
-    justifyContent: "space-between", 
-    padding: "6px 10px", 
+    justifyContent: "space-between",
+    padding: "6px 10px",
     margin: 10
   }
 };

@@ -39,14 +39,6 @@ const adminInputs = [
     isLong: false,
     validationNeeded: "required"
   },
-  // {
-  //   identifier: "description",
-  //   name: "Event Description",
-  //   placeholder: "Enter the event description",
-  //   isCompulsory: true,
-  //   isLong: true,
-  //   isTextArea: true
-  // },
   {
     identifier: "programmeImage",
     name: "Programme image",
@@ -64,20 +56,20 @@ const adminInputs = [
 
 export const generateTableHeaders = eventObject => {
   const tableHeaders = [];
-  tableHeaders.push({name: "Name"});
+  tableHeaders.push({ name: "Name" });
   if (eventObject.isOrganisationRequired) {
-    tableHeaders.push({name: "Organisation"});
-    tableHeaders.push({name: "Designation"});
+    tableHeaders.push({ name: "Organisation" });
+    tableHeaders.push({ name: "Designation" });
   }
   if (eventObject.isIdRequired) {
-    tableHeaders.push({name: "ID card"});
+    tableHeaders.push({ name: "ID card" });
   }
-  tableHeaders.push({name: "Email address"});
-  tableHeaders.push({name: "Mobile"});
-  tableHeaders.push({name: "Status"});
-  tableHeaders.push({name: ""});  
-  
+  tableHeaders.push({ name: "Email address" });
+  tableHeaders.push({ name: "Mobile" });
+  tableHeaders.push({ name: "Status" });
+  tableHeaders.push({ name: "" });
+
   return tableHeaders;
-}
+};
 
 export default adminInputs;

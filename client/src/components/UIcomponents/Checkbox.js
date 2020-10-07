@@ -8,13 +8,14 @@ const Checkbox = props => {
   const { selectedParticipants } = context;
 
   const isParticipantSelected = React.useCallback(() => {
-    return selectedParticipants.some(participant => participant._id === participantId);
-  }, [selectedParticipants, participantId])
+    return selectedParticipants.some(
+      participant => participant._id === participantId
+    );
+  }, [selectedParticipants, participantId]);
 
   React.useEffect(() => {
     setIsChecked(isParticipantSelected());
   }, [selectedParticipants, participantId, isParticipantSelected]);
-
 
   return (
     <input
@@ -26,6 +27,6 @@ const Checkbox = props => {
       }}
     />
   );
-}
+};
 
 export default Checkbox;

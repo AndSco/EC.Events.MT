@@ -11,11 +11,10 @@ module.exports.createParticipant = async (req, res, next) => {
     await eventRegisteredFor.participantsRegistered.push(newParticipant);
     await eventRegisteredFor.save();
     res.status(200).json(newParticipant);
-  } catch(err) {
+  } catch (err) {
     return next(err);
   }
-}
-
+};
 
 module.exports.updateParticipantRegistration = async (req, res, next) => {
   try {
@@ -40,10 +39,10 @@ module.exports.updateParticipantRegistration = async (req, res, next) => {
       );
       res.status(200).json(participantToTarget);
     }
-  } catch(err) {
+  } catch (err) {
     return next(err);
   }
-}
+};
 
 module.exports.updateParticipantsInBulk = async (req, res, next) => {
   try {
@@ -69,26 +68,27 @@ module.exports.updateParticipantsInBulk = async (req, res, next) => {
         { registrationStatus: "spam" }
       );
       res.status(200).json("test");
-    }    
-    
-  } catch(err) {
+    }
+  } catch (err) {
     return next(err);
   }
-}
-
+};
 
 module.exports.throwAwayParticipant = async (req, res, next) => {
   try {
-    const participantToDelete = await Participant.findById(req.params.participantId);
+    const participantToDelete = await Participant.findById(
+      req.params.participantId
+    );
     const eventId = participantToDelete.eventIdRegisteredFor;
     const eventToUpdate = await Event.findById(eventId);
     //TO DELETE PARTICIPANT FROM EVENT DOCUMENT
-    await eventToUpdate.participantsRegistered.pull({_id: req.params.participantId});
+    await eventToUpdate.participantsRegistered.pull({
+      _id: req.params.participantId
+    });
     await eventToUpdate.save();
-    await Participant.deleteOne({_id: req.params.participantId});
-    res.status(200).json({message: "participant deleted!"});
-  } catch(err) {
+    await Participant.deleteOne({ _id: req.params.participantId });
+    res.status(200).json({ message: "participant deleted!" });
+  } catch (err) {
     return next(err);
   }
-}
-
+};

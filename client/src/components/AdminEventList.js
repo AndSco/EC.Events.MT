@@ -5,8 +5,7 @@ import Card from "./UIcomponents/Card";
 import SectionTitle from "./UIcomponents/SectionTitle";
 import EventsTable from "./EventsTable";
 import CardContent from "./UIcomponents/CardContent";
-import {sortEventsByDate} from "../utils/functions";
-
+import { sortEventsByDate } from "../utils/functions";
 
 const AdminEventList = props => {
   const context = React.useContext(RegistrationContext);
@@ -39,7 +38,6 @@ const AdminEventList = props => {
       </Card>
     </div>
   );
-}
+};
 
 export default AdminEventList;
-

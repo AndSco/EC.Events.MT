@@ -35,7 +35,7 @@ describe("sort participants", () => {
     expect(result[2].registrationStatus).toBe("rejected");
     expect(result[3].registrationStatus).toBe("spam");
   });
-})
+});
 
 describe("sortEventsByDate", () => {
   it("should sort events by their date", () => {
@@ -51,7 +51,7 @@ describe("sortEventsByDate", () => {
     expect(result[1].date).toBe("2020-01-10T00:00:00.000+00:00");
     expect(result[2].date).toBe("2020-03-10T00:00:00.000+00:00");
     expect(result[3].date).toBe("2020-09-10T00:00:00.000+00:00");
-  })
+  });
 });
 
 describe("getParticipantsByStatus", () => {
@@ -67,7 +67,7 @@ describe("getParticipantsByStatus", () => {
     const result = getParticipantsByStatus(participants, "pending");
     expect(result).toHaveLength(1);
     expect(result[0].registrationStatus).toBe("pending");
-  }) 
+  });
 });
 
 describe("checkIfUserIsSelectedOrNot", () => {
@@ -90,26 +90,26 @@ describe("checkIfUserIsSelectedOrNot", () => {
     const result = checkIfUserIsSelectedOrNot(userToAdd, startingArray);
     expect(result).toHaveLength(5);
     expect(result).toContainEqual(userToAdd);
-  })
+  });
 });
 
 describe("formatDate", () => {
   it("should return a date formatted day/month/short year", () => {
     const result = formatDate("2020-03-10T00:00:00.000+00:00");
     expect(result).toBe("10/03/20");
-  })
-})
+  });
+});
 
 describe("addTimeToADate", () => {
   test("it should add the time of event start to a midnight date", () => {
     const result = addTimeToADate("2020-03-10T00:00:00.000+00:00", "10:00");
     expect(result).toBe("20200310T100000+01:00");
-  })
+  });
 });
 
 describe("stringifyDate", () => {
   test("should render a string date", () => {
     const result = stringifyDate("2020-03-10T00:00:00.000+00:00");
     expect(result).toBe("Tuesday 10 March 2020");
-  })
+  });
 });

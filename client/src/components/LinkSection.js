@@ -2,7 +2,7 @@ import React from "react";
 import UsefulLink from "./UIcomponents/UsefulLink";
 import ExpandingSection from "./UIcomponents/ExpadingSection";
 
-const LinkSection = ({links}) => {
+const LinkSection = ({ links }) => {
   return (
     <ExpandingSection title="Know more">
       {links.map(link => (
@@ -10,6 +10,6 @@ const LinkSection = ({links}) => {
       ))}
     </ExpandingSection>
   );
-}
+};
 
 export default LinkSection;

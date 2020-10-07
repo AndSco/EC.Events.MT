@@ -5,7 +5,6 @@ import IconLine from "./UIcomponents/IconLine";
 import AfterRegistrationBox from "./AfterRegistrationBox";
 import Logo from "./Logo";
 
-
 const EventHeader = props => {
   const context = React.useContext(RegistrationContext);
   const {
@@ -45,6 +44,6 @@ const EventHeader = props => {
       </div>
     </div>
   );
-}
+};
 
 export default EventHeader;

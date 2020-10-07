@@ -1,9 +1,11 @@
 import React from "react";
 import { inputValidator } from "../../dbFunctions/reducers/formReducer";
-import { uploadEventProgramme, deleteEventProgramme } from "../../dbFunctions/handlers/events";
+import {
+  uploadEventProgramme,
+  deleteEventProgramme
+} from "../../dbFunctions/handlers/events";
 import RegistrationContext from "../../contexts/eventRegistration/RegistrationContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
 
 const Input = props => {
   const context = React.useContext(RegistrationContext);
@@ -53,7 +55,7 @@ const Input = props => {
       );
     }
     return;
-  }
+  };
 
   let inputToRender = (
     <input
@@ -156,7 +158,6 @@ const Input = props => {
     );
   }
 
-
   return (
     <div
       style={{ ...styles.inputContainer, width: props.isLong ? 600 : 270 }}
@@ -166,17 +167,13 @@ const Input = props => {
         {props.inputName}
         {props.isCompulsory && <span style={{ color: "red" }}> *</span>}
       </label>
-
       {inputToRender}
-
-      {/* {errorMessage && <h5 className="error-message">{errorMessage}</h5>} */}
     </div>
   );
 };
 
 const styles = {
   inputContainer: {
-    // height: 40,
     display: "flex",
     flexDirection: "column",
     flexGrow: 1,
@@ -187,4 +184,3 @@ const styles = {
 };
 
 export default Input;
-

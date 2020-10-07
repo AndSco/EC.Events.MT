@@ -3,11 +3,9 @@ import ReactExport from "react-export-excel";
 import { sortParticipantsBySomeValue } from "../utils/functions";
 import IconWithLabel from "./UIcomponents/IconWithLabel";
 
-
 const ExcelFile = ReactExport.ExcelFile;
 const ExcelSheet = ReactExport.ExcelFile.ExcelSheet;
 const ExcelColumn = ReactExport.ExcelFile.ExcelColumn;
-
 
 const DownloadExcel = props => {
   return (
@@ -32,7 +30,7 @@ const DownloadExcel = props => {
                 )
               ])
             : undefined
-        } // if I don't copy it, it mutates the original array!
+        }
       >
         <ExcelColumn label="Last Name" value="secondName" />
         <ExcelColumn label="First Name" value="firstName" />

@@ -1,13 +1,12 @@
 import React from "react";
-import ReactPlayer from 'react-player';
+import ReactPlayer from "react-player";
 import ExpandingSection from "./UIcomponents/ExpadingSection";
-
 
 const VideoPlayer = props => {
   return (
     <ExpandingSection title="Video">
       <div className="player-wrapper" style={{ margin: "0" }}>
-        <ReactPlayer 
+        <ReactPlayer
           className="video-player"
           url={props.videoUrl}
           width="100%"
@@ -16,6 +15,6 @@ const VideoPlayer = props => {
       </div>
     </ExpandingSection>
   );
-}
+};
 
 export default VideoPlayer;

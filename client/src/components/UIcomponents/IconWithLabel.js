@@ -26,7 +26,7 @@ const IconWithLabel = props => {
       </div>
     </div>
   );
-}
+};
 
 const Styles = {
   tooltip: {

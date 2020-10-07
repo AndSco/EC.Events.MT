@@ -2,7 +2,7 @@ import React from "react";
 import Card from "./UIcomponents/Card";
 import EventDescription from "./UIcomponents/EventDescription";
 import VideoPlayer from "./VideoPlayer";
-import {stringifyDate} from "../utils/functions";
+import { stringifyDate } from "../utils/functions";
 import EventHeader from "./EventHeader";
 import CardContent from "./UIcomponents/CardContent";
 import RegistrationContext from "../contexts/eventRegistration/RegistrationContext";
@@ -10,10 +10,9 @@ import EventRegistrationForm from "./EventRegistrationForm";
 import ProgrammeViewer from "./ProgrammeViewer";
 import LinkSection from "./LinkSection";
 
-
 const Event = props => {
   const context = React.useContext(RegistrationContext);
-  const {isRegistering} = context;
+  const { isRegistering } = context;
 
   return (
     <div className="event-container">
@@ -42,6 +41,6 @@ const Event = props => {
       </Card>
     </div>
   );
-}
+};
 
 export default Event;

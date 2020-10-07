@@ -7,8 +7,12 @@ import CreateEventForm from "../../components/EventCreationForm";
 
 const DashboardPage = () => {
   const context = React.useContext(RegistrationContext);
-  const { isCreatingEvent, isEditingEvent, uploadAllEvents, isAdminLoggedIn } = context;
-
+  const {
+    isCreatingEvent,
+    isEditingEvent,
+    uploadAllEvents,
+    isAdminLoggedIn
+  } = context;
 
   React.useEffect(() => {
     if (isAdminLoggedIn) {
@@ -16,12 +20,17 @@ const DashboardPage = () => {
     }
   }, [uploadAllEvents, isCreatingEvent, isEditingEvent, isAdminLoggedIn]);
 
-
   if (!isAdminLoggedIn) {
-    return <PasswordBox />
+    return <PasswordBox />;
   }
 
-  return isCreatingEvent ? <CreateEventForm /> :  isEditingEvent ? <EventEditing /> : <AdminEventList />;
-}
+  return isCreatingEvent ? (
+    <CreateEventForm />
+  ) : isEditingEvent ? (
+    <EventEditing />
+  ) : (
+    <AdminEventList />
+  );
+};
 
 export default DashboardPage;

@@ -4,7 +4,6 @@ import RegistrationContext from "../contexts/eventRegistration/RegistrationConte
 import Loader from "../components/UIcomponents/Loader";
 import ConfirmationMessage from "../components/ConfirmationMessage";
 
-
 const EventPage = props => {
   const context = React.useContext(RegistrationContext);
   const {
@@ -12,12 +11,12 @@ const EventPage = props => {
     currentEvent,
     isLoading,
     loadEventOnPage
-  } = context; 
+  } = context;
   const eventId = props.match.params.eventId;
 
   React.useEffect(() => {
     loadEventOnPage(eventId, false);
-  }, [loadEventOnPage, eventId])
+  }, [loadEventOnPage, eventId]);
 
   return isLoading || !currentEvent ? (
     <Loader />
@@ -41,4 +40,3 @@ const EventPage = props => {
 };
 
 export default EventPage;
-

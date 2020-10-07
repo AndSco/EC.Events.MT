@@ -1,11 +1,11 @@
 const moment = require("moment");
 
 const participationStatusDictionary = {
-  pending: 1, 
-  confirmed: 2, 
-  rejected: 3, 
+  pending: 1,
+  confirmed: 2,
+  rejected: 3,
   spam: 4
-}
+};
 
 const emailMessages = {
   createConfirmationMessage: (event, participant) =>
@@ -86,7 +86,6 @@ export const sendEmail = (purpose, participantsArray, currentEvent) => {
     }
   }
 };
- 
 
 export const sortByStatus = (a, b) => {
   if (
@@ -101,11 +100,10 @@ export const sortByStatus = (a, b) => {
   ) {
     return -1;
   }
-  return 0;     
-}
+  return 0;
+};
 
-
-export const sortParticipantsBySomeValue = (value, array)  => {
+export const sortParticipantsBySomeValue = (value, array) => {
   return array.sort((a, b) => {
     if (value === "registrationStatus") {
       return sortByStatus(a, b);
@@ -117,17 +115,15 @@ export const sortParticipantsBySomeValue = (value, array)  => {
         return -1;
       }
       return 0;
-    }   
-  }
-)}
-
+    }
+  });
+};
 
 export const getParticipantsByStatus = (eventObj, status) => {
   return eventObj.participantsRegistered.filter(
     participant => participant.registrationStatus === status
   );
-}
-
+};
 
 export const sortEventsByDate = eventsArray => {
   return eventsArray.sort((a, b) => {
@@ -137,20 +133,22 @@ export const sortEventsByDate = eventsArray => {
     if (a.date < b.date) {
       return -1;
     }
-    return 0;   
-  })
-}
+    return 0;
+  });
+};
 
 export const checkIfUserIsSelectedOrNot = (userObj, stateArray) => {
   let newStateArray = [...stateArray];
-  if (stateArray.length > 0 && stateArray.some(entry => entry._id === userObj._id)) {
+  if (
+    stateArray.length > 0 &&
+    stateArray.some(entry => entry._id === userObj._id)
+  ) {
     newStateArray = newStateArray.filter(entry => entry._id !== userObj._id);
   } else {
     newStateArray.push(userObj);
   }
   return newStateArray;
-}
-
+};
 
 export const formatDate = dateString => {
   const year = dateString.slice(2, 4);
@@ -158,8 +156,7 @@ export const formatDate = dateString => {
   const day = dateString.slice(8, 10);
 
   return `${day}/${month}/${year}`;
-}
-
+};
 
 export const addTimeToADate = (dateObj, startingTime) => {
   let actualDate = dateObj.split("T")[0];
@@ -167,12 +164,10 @@ export const addTimeToADate = (dateObj, startingTime) => {
   const hours = startingTime.split(":")[0];
   const minutes = startingTime.split(":")[1];
   const time = moment(new Date(actualDate));
-  time.add(hours, "hours").add(minutes, "minutes"); 
-  return time.format("YYYYMMDDTHHmmssZ"); 
-}
-
+  time.add(hours, "hours").add(minutes, "minutes");
+  return time.format("YYYYMMDDTHHmmssZ");
+};
 
 export const stringifyDate = dateObj => {
-  return moment(dateObj)
-    .format("dddd D MMMM YYYY");
-}
+  return moment(dateObj).format("dddd D MMMM YYYY");
+};

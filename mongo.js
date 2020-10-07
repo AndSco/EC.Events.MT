@@ -1,4 +1,4 @@
-const mongoose = require("mongoose")
+const mongoose = require("mongoose");
 const { mongoAtlasPword } = require("./config");
 const mongoSettings = {
   keepAlive: true,
@@ -7,7 +7,6 @@ const mongoSettings = {
   useCreateIndex: true,
   useUnifiedTopology: true
 };
-
 
 const mongo = () => {
   try {
@@ -24,10 +23,9 @@ const mongo = () => {
     });
     mongoose.connect(mongoURI, mongoSettings);
     return connected;
-  } catch(err) {
-    console.error(err)
+  } catch (err) {
+    console.error(err);
   }
-}
+};
 
 module.exports = mongo;
-

@@ -1,7 +1,7 @@
 import React from "react";
 import logo from "../assets/images/ec_logo.png";
 
-const Logo = props => {
+const Logo = () => {
   return (
     <div
       className="logo-container"
@@ -31,8 +31,7 @@ const Logo = props => {
             width: 80,
             height: 80,
             borderRadius: 40,
-            //backgroundColor: "white",
-            backgroundImage: `url(${logo})`, 
+            backgroundImage: `url(${logo})`,
             backgroundSize: "contain",
             backgroundPosition: "center"
           }}

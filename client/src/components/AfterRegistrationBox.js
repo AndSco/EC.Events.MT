@@ -1,4 +1,4 @@
-import React from "react"
+import React from "react";
 
 const AfterRegistrationBox = () => {
   return (
@@ -13,6 +13,6 @@ const AfterRegistrationBox = () => {
       <h4>Registration sent!</h4>
     </div>
   );
-}
+};
 
 export default AfterRegistrationBox;

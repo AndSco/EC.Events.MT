@@ -1,7 +1,7 @@
 import React from "react";
-import {sortParticipantsBySomeValue, sendEmail} from "../utils/functions";
+import { sortParticipantsBySomeValue, sendEmail } from "../utils/functions";
 import RegistrationContext from "../contexts/eventRegistration/RegistrationContext";
-import {updateParticipantsInBulkOnDb} from "../dbFunctions/handlers/participants";
+import { updateParticipantsInBulkOnDb } from "../dbFunctions/handlers/participants";
 
 const ActionSelector = props => {
   const { resortParticipants, visibleParticipants } = props;
@@ -11,12 +11,11 @@ const ActionSelector = props => {
     selectedParticipants,
     currentEvent,
     manageModal,
-    loadEventOnPage, 
+    loadEventOnPage,
     deselectAll
   } = context;
 
   const thereAreSelectedParticipants = selectedParticipants.length > 0;
-  
 
   const handleChange = async (e, actionToPerform) => {
     if (actionToPerform === "sort") {
@@ -27,7 +26,9 @@ const ActionSelector = props => {
     if (actionToPerform === "sendEmail") {
       //manage batch spam - No email is sent in this case
       if (e.target.value === "spam") {
-        const participantsIds = selectedParticipants.map(participant => participant._id);
+        const participantsIds = selectedParticipants.map(
+          participant => participant._id
+        );
         await updateParticipantsInBulkOnDb(participantsIds, "spam");
         loadEventOnPage(currentEvent._id);
         deselectAll();
@@ -36,7 +37,7 @@ const ActionSelector = props => {
       manageModal(e.target.value, selectedParticipants, true);
       sendEmail(e.target.value, selectedParticipants, currentEvent);
     }
-  }
+  };
 
   return !thereAreSelectedParticipants ? (
     <select onChange={e => handleChange(e, "sort")} className="action-selector">
@@ -57,7 +58,6 @@ const ActionSelector = props => {
       <option value="remind">Send reminder</option>
     </select>
   );
-}
-
+};
 
 export default ActionSelector;

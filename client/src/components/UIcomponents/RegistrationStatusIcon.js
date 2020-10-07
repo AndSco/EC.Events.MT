@@ -3,7 +3,7 @@ import React from "react";
 const colors = {
   pending: "#FEF31C",
   confirmed: "#13E3AB",
-  rejected: "#E74C3C", 
+  rejected: "#E74C3C",
   spam: "black"
 };
 
@@ -31,7 +31,7 @@ const RegistrationStatusIcon = props => {
       </div>
     </div>
   );
-}
+};
 
 const Styles = {
   tooltip: {

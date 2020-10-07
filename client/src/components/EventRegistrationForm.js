@@ -17,9 +17,7 @@ const EventRegistrationForm = () => {
   );
 
   const context = React.useContext(RegistrationContext);
-  const {
-    finishRegistrationProcess,
-    currentEvent  } = context;
+  const { finishRegistrationProcess, currentEvent } = context;
 
   const inputsConfig = createStartingInputs(currentEvent);
 
@@ -32,7 +30,7 @@ const EventRegistrationForm = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = e => {
     e.preventDefault();
     const configsObject = formState.inputValues;
     finishRegistrationProcess();

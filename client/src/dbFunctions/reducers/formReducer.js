@@ -35,22 +35,20 @@ export const formReducer = (state, action) => {
   }
 };
 
-
 const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-export const inputValidator = (input) => {
+export const inputValidator = input => {
   switch (input.type) {
     case "email":
       return emailRegex.test(input.text.toLowerCase());
 
-    case "required": 
+    case "required":
       return input.text.trim().length > 0;
-      
+
     case "minLength":
-      return input.text.length > input.minLength; 
+      return input.text.length > input.minLength;
 
     default:
       return;
   }
-}
-
+};

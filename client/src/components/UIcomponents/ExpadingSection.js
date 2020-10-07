@@ -2,7 +2,6 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import EventSectionTitle from "./EventSectionTitle";
 
-
 const ExpandingSection = props => {
   const [isVisible, setIsVisible] = React.useState(false);
 
@@ -28,6 +27,6 @@ const ExpandingSection = props => {
       {isVisible && props.children}
     </div>
   );
-}
+};
 
 export default ExpandingSection;

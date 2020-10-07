@@ -3,13 +3,10 @@ import RegistrationContext from "../../contexts/eventRegistration/RegistrationCo
 
 const Card = props => {
   const context = React.useContext(RegistrationContext);
-  const {isRegistering} = context;
+  const { isRegistering } = context;
   return (
-    <div id={isRegistering ? "card-to-collapse" : "card"}>
-      {props.children}
-    </div>
+    <div id={isRegistering ? "card-to-collapse" : "card"}>{props.children}</div>
   );
-}
-
+};
 
 export default Card;

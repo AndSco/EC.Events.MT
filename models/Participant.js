@@ -15,7 +15,7 @@ const ParticipantSchema = new mongoose.Schema({
   },
   idCardNumber: {
     type: String
-  }, 
+  },
   designation: {
     type: String
   },
@@ -31,10 +31,9 @@ const ParticipantSchema = new mongoose.Schema({
     default: "pending"
   },
   eventIdRegisteredFor: {
-    type: String,
+    type: String
   }
 });
-
 
 const Participant = mongoose.model("Participant", ParticipantSchema);
 

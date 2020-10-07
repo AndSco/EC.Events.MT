@@ -4,8 +4,6 @@ import DashboardPage from "../pages/admin/DashboardPage";
 import EventPage from "../pages/EventPage";
 import AdminEventDetailsPage from "../pages/admin/AdminEventDetailsPage";
 
-
-
 const Main = props => {
   return (
     <Switch>
@@ -17,5 +15,3 @@ const Main = props => {
 };
 
 export default Main;
-
-//<Route exact path="/admin" component={DashboardPage} />

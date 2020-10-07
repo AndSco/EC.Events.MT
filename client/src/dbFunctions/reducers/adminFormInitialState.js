@@ -24,4 +24,4 @@ const adminFormInitialState = {
   isFormValid: false
 };
 
-export default adminFormInitialState;;
+export default adminFormInitialState;

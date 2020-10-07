@@ -1,7 +1,7 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const UsefulLink = ({linkName, url, isSmall}) => {
+const UsefulLink = ({ linkName, url, isSmall }) => {
   return (
     <a
       target="_blank"
@@ -9,7 +9,7 @@ const UsefulLink = ({linkName, url, isSmall}) => {
       href={url}
       alt={linkName}
       className="useful-link"
-      style={{fontSize: isSmall ? 15 : ""}}
+      style={{ fontSize: isSmall ? 15 : "" }}
     >
       <FontAwesomeIcon
         icon="external-link-alt"
@@ -19,6 +19,6 @@ const UsefulLink = ({linkName, url, isSmall}) => {
       {linkName}
     </a>
   );
-}
+};
 
 export default UsefulLink;

@@ -17,6 +17,6 @@ const ProgrammeViewer = props => {
       </ExpandingSection>
     </div>
   );
-}
+};
 
 export default ProgrammeViewer;

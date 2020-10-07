@@ -50,10 +50,10 @@ const EventSchema = new mongoose.Schema({
     public_id: {
       type: String
     }
-  }, 
+  },
   usefulLinks: [
     {
-      linkName: String, 
+      linkName: String,
       url: String
     }
   ]
@@ -66,7 +66,7 @@ EventSchema.pre("save", function(next) {
 });
 
 EventSchema.pre("save", function() {
-  if (this.wasNew) { 
+  if (this.wasNew) {
     this.urlSlug = `/events/${this._id}`;
   }
   return;

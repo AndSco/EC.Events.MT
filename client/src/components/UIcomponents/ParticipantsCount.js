@@ -8,7 +8,7 @@ const ParticipantsCount = props => {
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        margin: "0 14px", 
+        margin: "0 14px",
         cursor: "pointer"
       }}
       onClick={props.functionToPerform}
@@ -23,14 +23,16 @@ const ParticipantsCount = props => {
       >
         {props.label}
       </h4>
-      <h3 style={{ 
-        color: props.isActive ? "#FF006C" : "#797D7F" ,
-        transform: `scale(${props.isActive ? 1.2 : 1})`
-      }}>
+      <h3
+        style={{
+          color: props.isActive ? "#FF006C" : "#797D7F",
+          transform: `scale(${props.isActive ? 1.2 : 1})`
+        }}
+      >
         {props.value}
       </h3>
     </div>
   );
-}
+};
 
 export default ParticipantsCount;

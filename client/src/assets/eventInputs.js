@@ -59,5 +59,4 @@ export const createStartingInputs = eventObject => {
   });
 
   return inputsToReturn;
-}
-
+};

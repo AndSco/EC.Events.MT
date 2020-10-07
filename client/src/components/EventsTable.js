@@ -2,9 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import RegistrationContext from "../contexts/eventRegistration/RegistrationContext";
 import CellContent from "./UIcomponents/CellContent";
-import {formatDate} from "../utils/functions";
+import { formatDate } from "../utils/functions";
 import IconWithLabel from "./UIcomponents/IconWithLabel";
-
 
 const Td = ({ children, to }) => {
   // Conditionally wrapping content into a link
@@ -20,8 +19,6 @@ const Td = ({ children, to }) => {
 const EventsTable = props => {
   const context = React.useContext(RegistrationContext);
   const { prepareEventToBeDeleted, startEditingEvent, manageModal } = context;
-
-  
 
   return (
     <table className="table events">
@@ -77,8 +74,8 @@ const EventsTable = props => {
           );
         })}
       </tbody>
-    </table>  
+    </table>
   );
-}
+};
 
 export default EventsTable;

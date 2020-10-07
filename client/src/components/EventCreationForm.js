@@ -16,7 +16,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import UsefulLink from "./UIcomponents/UsefulLink";
 import RichTextEditor from "./RichTextEditor";
 
-
 const EventCreationForm = props => {
   const context = React.useContext(RegistrationContext);
   const {
@@ -38,18 +37,22 @@ const EventCreationForm = props => {
   const isThereAProgrammeImage = formState.programmeImage !== undefined;
 
   // ID AND ORGANISATION
-  const idRequirements = eventCurrentlyEditing && eventCurrentlyEditing.isIdRequired ? "yes" : "no";
+  const idRequirements =
+    eventCurrentlyEditing && eventCurrentlyEditing.isIdRequired ? "yes" : "no";
   const [isIdRequired, setIsIdRequired] = React.useState(idRequirements);
 
   const organisationRequirements =
-    eventCurrentlyEditing && eventCurrentlyEditing.isOrganisationRequired ? "yes" : "no";
+    eventCurrentlyEditing && eventCurrentlyEditing.isOrganisationRequired
+      ? "yes"
+      : "no";
   const [isOrganisationRequired, setIsOrganisationRequired] = React.useState(
     organisationRequirements
   );
 
-
   //UsefulLinks
-  const alreadyLoadedLinks = eventCurrentlyEditing ? eventCurrentlyEditing.usefulLinks : [];
+  const alreadyLoadedLinks = eventCurrentlyEditing
+    ? eventCurrentlyEditing.usefulLinks
+    : [];
   const [usefulLinks, setUsefulLinks] = React.useState(alreadyLoadedLinks);
   const [linkName, setLinkName] = React.useState("");
   const [url, setUrl] = React.useState("");
@@ -60,14 +63,12 @@ const EventCreationForm = props => {
       setLinkName("");
       setUrl("");
     }
-  }
+  };
 
   const removeLink = linkUrl => {
     const updatedLinkList = usefulLinks.filter(link => link.url !== linkUrl);
     setUsefulLinks(updatedLinkList);
-  }
-
-
+  };
 
   const handleInputChange = (identifier, value, isValid) => {
     dispatchFormState({
@@ -80,14 +81,14 @@ const EventCreationForm = props => {
 
   const removeProgramme = () => handleInputChange("programmeImage", {}, true);
 
-
   const handleSubmit = async e => {
     e.preventDefault();
     const configsObject = formState.inputValues || formState; //for id, organisation and links in editing mode, there is no inputValues (they are managed outside the reducer)
-    
+
     //Add the ID and organisationRequired info!
     configsObject.isIdRequired = isIdRequired === "no" ? false : true;
-    configsObject.isOrganisationRequired = isOrganisationRequired === "no" ? false : true;
+    configsObject.isOrganisationRequired =
+      isOrganisationRequired === "no" ? false : true;
 
     //Add the useful links
     configsObject.usefulLinks = usefulLinks;
@@ -107,14 +108,11 @@ const EventCreationForm = props => {
   const handleOptionChange = (changeEvent, action) => {
     if (action === "id") {
       setIsIdRequired(changeEvent.target.value);
-    }
-    else if (action === "organisation") {
+    } else if (action === "organisation") {
       setIsOrganisationRequired(changeEvent.target.value);
-    }
-    else if (action === "linkName") {
+    } else if (action === "linkName") {
       setLinkName(changeEvent.target.value);
-    }
-    else if (action === "url") {
+    } else if (action === "url") {
       setUrl(changeEvent.target.value);
     }
   };
@@ -162,7 +160,9 @@ const EventCreationForm = props => {
 
             <RichTextEditor
               onRichTextUpdate={updateRichText}
-              startingValue={eventCurrentlyEditing ? eventCurrentlyEditing.description : ""}
+              startingValue={
+                eventCurrentlyEditing ? eventCurrentlyEditing.description : ""
+              }
             />
 
             <div id="id-card-checkbox" className="radio-box input-container">
@@ -336,15 +336,14 @@ const styles = {
     flexWrap: "wrap",
     justifyContent: "space-between"
   },
-  otherInputswLabel: { 
-    display: "flex", 
-    flexDirection: "column", 
-    // padding: ".6rem" 
-  }, 
+  otherInputswLabel: {
+    display: "flex",
+    flexDirection: "column"
+    // padding: ".6rem"
+  },
   otherInputs: {
     width: 250
   }
 };
 
 export default EventCreationForm;
-

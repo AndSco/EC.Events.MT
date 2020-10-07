@@ -6,7 +6,6 @@ const SectionTitle = props => {
       <i id="main-title">{props.title}</i> <span>{props.callToAction}</span>
     </h3>
   );
-}
+};
 
 export default SectionTitle;
-

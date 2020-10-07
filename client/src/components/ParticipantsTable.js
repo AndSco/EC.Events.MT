@@ -1,47 +1,43 @@
 import React from "react";
 import RegistrationContext from "../contexts/eventRegistration/RegistrationContext";
-import {
-  updateParticipantRegistrationOnDB} from "../dbFunctions/handlers/participants";
+import { updateParticipantRegistrationOnDB } from "../dbFunctions/handlers/participants";
 import RegistrationStatusIcon from "./UIcomponents/RegistrationStatusIcon";
 import CellContent from "./UIcomponents/CellContent";
 import Checkbox from "./UIcomponents/Checkbox";
 import { sendEmail } from "../utils/functions";
 import IconWithLabel from "./UIcomponents/IconWithLabel";
 
-
 const ParticipantsTable = props => {
-  
   const context = React.useContext(RegistrationContext);
   const {
     currentEvent,
     manageModal,
     specifyParticipantId,
-    isSelectAllActive, 
+    isSelectAllActive,
     onUserSelectionHandler,
-    pushInBlock, 
-    selectAll, 
-    deselectAll, 
+    pushInBlock,
+    selectAll,
+    deselectAll,
     resetSwitch
   } = context;
-
 
   return (
     <table className="table">
       <thead>
         <tr>
           <th>
-            <input 
-              type="checkbox" 
+            <input
+              type="checkbox"
               checked={isSelectAllActive}
               onChange={() => {
-              if (isSelectAllActive) {
-                deselectAll();
-              } else {
-                selectAll();
-                pushInBlock(props.tableEntries);
-              }
-              
-              }} />
+                if (isSelectAllActive) {
+                  deselectAll();
+                } else {
+                  selectAll();
+                  pushInBlock(props.tableEntries);
+                }
+              }}
+            />
           </th>
           {props.tableHeaders.map((header, i) => (
             <th key={i}>
@@ -150,4 +146,3 @@ const ParticipantsTable = props => {
 };
 
 export default ParticipantsTable;
-

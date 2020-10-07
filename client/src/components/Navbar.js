@@ -2,10 +2,16 @@ import React from "react";
 import RegistrationContext from "../contexts/eventRegistration/RegistrationContext";
 import { NavLink } from "react-router-dom";
 
-
 const Navbar = props => {
   const context = React.useContext(RegistrationContext);
-  const {isAdminLoggedIn, startCreatingEvent, finishedCreatingEvent, finishedEditingEvent, logoutAdmin, isCreatingEvent} = context;
+  const {
+    isAdminLoggedIn,
+    startCreatingEvent,
+    finishedCreatingEvent,
+    finishedEditingEvent,
+    logoutAdmin,
+    isCreatingEvent
+  } = context;
   return (
     <nav id="navbar">
       <div id="main-titles" style={styles.titleContainer}>
@@ -52,12 +58,12 @@ const Navbar = props => {
       )}
     </nav>
   );
-}
+};
 
 const styles = {
   titleContainer: {
     display: "flex",
-    alignItems: "center"//"baseline"
+    alignItems: "center"
   },
   logo: {
     display: "flex",
@@ -71,6 +77,3 @@ const styles = {
 };
 
 export default Navbar;
-
-
-

@@ -6,6 +6,6 @@ const EventSectionTitle = props => {
       <h3 className="event-section-title">{props.title}</h3>
     </div>
   );
-}
+};
 
 export default EventSectionTitle;
